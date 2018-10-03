@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Burgers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" />
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+    {{{ body }}}
+    <script>
+        $(function () {
+            $(".change").on("click", function (event) {
+                var id = $(this).data("id");
+                var newDevour = $(this).data("newdevour");
+                var current = {
+                    devour: newDevour
+                };
+                $.ajax("/api/burger/" + id, {
+                    type: "PUT",
+                    data: current
+                }).then(
+                    function () {
+                        location.reload();
+                    }
+                );
+            });
+            $(".create").on("submit", function (event) {
+                event.preventDefault();
+                var newBurger = {
+                    burger_name: $("#ca").val().trim()
+                };
+                $.ajax("/api/burger", {
+                    type: "POST",
+                    data: newBurger
+                }).then(
+                    function () {
+                        location.reload();
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+
+</html>

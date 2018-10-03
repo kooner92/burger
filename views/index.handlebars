@@ -1,0 +1,45 @@
+
+<div class="container">
+ 
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Not Devoured</h2>
+
+            {{#each burger}}
+            {{#unless devoured}}
+            <h5>
+                {{burger_name}}
+
+                <button class="change" data-id="{{id}}" data-newdevour="true">
+                    {{#if devoured}}1{{else}}DEVOUR{{/if}}
+                </button>
+
+            </h5>
+            {{/unless}}
+            {{/each}}
+        </div>
+        <div class="col-lg-6">
+            <h2>Devoured</h2>
+
+            {{#each burger}}
+            {{#if devoured}}
+            <h5>
+                {{burger_name}}
+            </h5>
+            {{/if}}
+            {{/each}}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <form class="create justify-content-center">
+                <div class="form-group">
+                    <label for="ca">Burger Name:</label>
+                    <input type="text" id="ca" name="name">
+                </div>
+                <button type="submit">Enter</button>
+            </form>
+        </div>
+    </div>
+</div>
